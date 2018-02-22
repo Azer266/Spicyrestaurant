@@ -1,0 +1,128 @@
+﻿@model IEnumerable<RestaurantReserv.Models.General>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Header)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeaderAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeaderText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Story)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Newsletter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Facebook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Twitter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Instagram)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LinkedIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HeaderPicture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Logo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogoWhite)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Header)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeaderAddress)
+        </td>
+        <td>
+            @item.HeaderText.Substring(0, 50)
+        </td>
+        <td>
+            @item.Story.Substring(0, 50)
+        </td>
+        <td>
+            <img src="~/Public/img/@Html.DisplayFor(modelItem => item.Quote)" width="100" />
+        </td>
+        <td>
+            @item.Newsletter.Substring(0, 50)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Facebook)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Twitter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Instagram)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LinkedIn)
+        </td>
+        <td>
+            <img src="~/Public/img/@Html.DisplayFor(modelItem => item.HeaderPicture)" width="100" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderPhone)
+        </td>
+        <td>
+            <img src="~/Public/img/@Html.DisplayFor(modelItem => item.Logo)" width="100" />
+        </td>
+        <td>
+            <img src="~/Public/img/@Html.DisplayFor(modelItem => item.LogoWhite)" width="100" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<RestaurantReserv.Models.Contact>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MainBranch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MainAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MainCordination)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MainAddress2)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MainBranch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MainAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MainCordination)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MainAddress2)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

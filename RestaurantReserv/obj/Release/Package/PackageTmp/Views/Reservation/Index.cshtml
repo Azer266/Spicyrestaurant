@@ -1,0 +1,62 @@
+﻿@using RestaurantReserv.Models;
+
+<!--=============== Reservation Section ===============-->
+<section class="reservation">
+    <div class="container">
+        <header class="text-center">
+            <h2 class="with-bg-text" data-text="Reservation">
+                <small class="text-primary">Reserve a seat</small>
+                Order Your Table
+            </h2>
+        </header>
+
+        <div class="form-holder row">
+            @if (Session["mailSended"] != null)
+                {
+                    <div class="alert alert-success">
+                        Your message sended
+                    </div>
+
+                    Session["mailSended"] = null;
+                }
+            <form action='@Url.Action("Message","Reservation")' id='reservation-form' class='col-lg-10 push-lg-1 rounded has-shadow has-pattern' method='post'>
+                <input type='hidden' name='form-name' value='reservation-form' />
+                <div class="star"><i class="fa fa-star"></i></div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="text" name="Name" class="input-material" id="name" required>
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="email" name="Email" class="input-material" id="email" required>
+                        <label for="email">Email Address</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="tel" name="Phone" class="input-material" id="phone" required>
+                        <label for="phone">Phone Number</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="number" name="PeopleNumber" class="input-material" id="people-number" required>
+                        <label for="people-number">How Many People</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" name="Time" class="input-material timepicker" id="time-alt" required>
+                        <label for="time-alt">Desired Time</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="input-material datepicker-here" id="date" name="Date" data-language='en' required>
+                        <label for="date">Desired Date</label>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <textarea class="input-material" id="special-request" name="SpecialRequest" required></textarea>
+                        <label for="special-request">Special Request</label>
+                    </div>
+                    <div class="form-group col-md-12 text-center no-margin">
+                        <button type="submit" class="btn-template btn-sm">Book Now</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!--=============== /. Reservation Section ===============-->

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2bdd7a2bf0c543b1a8414daf3a16476b" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="SpicyRestaurantModel.About" Width="1.5" PointX="2.875" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.Chef" Width="1.5" PointX="2.875" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.Comment" Width="1.5" PointX="6.375" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.Contact" Width="1.5" PointX="6.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.Dish" Width="1.5" PointX="4.625" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.Event" Width="1.5" PointX="4.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.Feature" Width="1.5" PointX="8.125" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.Gallery" Width="1.5" PointX="6.375" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.General" Width="1.5" PointX="0.625" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.MenuCategory" Width="1.5" PointX="0.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.Menu" Width="1.5" PointX="2.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.OpeningHour" Width="1.5" PointX="8.125" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.Statistic" Width="1.5" PointX="8.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.Branch" Width="1.5" PointX="4.625" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="SpicyRestaurantModel.FK_Menus_MenuCategories" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.SiteMap" Width="1.5" PointX="6.375" PointY="4.5" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.Subscribe" Width="1.5" PointX="9.75" PointY="0.5" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.User" Width="1.5" PointX="9.75" PointY="2.375" />
+        <EntityTypeShape EntityType="SpicyRestaurantModel.Reservation" Width="1.5" PointX="9.75" PointY="4.375" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

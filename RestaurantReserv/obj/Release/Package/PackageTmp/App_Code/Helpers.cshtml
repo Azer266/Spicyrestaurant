@@ -1,0 +1,39 @@
+﻿@using RestaurantReserv.Models;
+
+@helper MenuCreator(string id, List<Menu> firstHalf, List<Menu> secondHalf, bool active = false)
+    {
+        <div class="tab-pane @(active ? "active" : "")" id="@id" role="tabpanel">
+            <div class="row">
+                <div class="col-lg-6">
+                    @foreach (var item in firstHalf)
+                    {
+                        <div class="dish has-pattern-on-hover has-shadow-small-on-hover d-flex align-items-center justify-content-between">
+                        <div class="image">
+                            <img src="~/Public/img/@item.Picture" alt="dish" class="img-fluid">
+                        </div>
+                        <div class="details">
+                            <div class="name">@item.Menu1</div>
+                            <div class="tags">@item.Details</div>
+                        </div>
+                        <div class="price">$@item.Price</div>
+                        </div>
+                    }
+                </div>
+                <div class="col-lg-6">
+                    @foreach (Menu item in secondHalf)
+                    {
+                        <div class="dish has-pattern-on-hover has-shadow-small-on-hover d-flex align-items-center justify-content-between">
+                        <div class="image">
+                            <img src="~/Public/img/@item.Picture" alt="dish" class="img-fluid">
+                        </div>
+                        <div class="details">
+                            <div class="name">@item.Menu1</div>
+                            <div class="tags">@item.Details</div>
+                        </div>
+                        <div class="price">$@item.Price</div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+}

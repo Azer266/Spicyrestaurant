@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="SpicyRestaurantEntities-Web.config Connection String" description="SpicyRestaurantEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Database.csdl|res://*/Models.Database.ssdl|res://*/Models.Database.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=spicyrestaurantdbserver.database.windows.net;initial catalog=spicyrestaurant;user id=Azer;password=Aghayev1989;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Azer\\Desktop\\RestaurantReserv\\RestaurantReserv\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SpicyRestaurantEntities']/@connectionString" />
+  </parameter>
+</parameters>

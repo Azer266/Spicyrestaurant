@@ -1,0 +1,412 @@
+﻿@using RestaurantReserv.Models;
+
+<!--=============== Hero Section ===============-->
+<section class="hero hero-home has-pattern has-background-text-gray" data-text="Spicy Restaurant">
+    <div class="container d-flex align-items-center">
+        <div class="row d-flex align-items-center">
+
+            <!-- text column -->
+            <div class="text col-lg-6">
+                <strong class="text-primary text-uppercase">Food Services</strong>
+                <h1>@ViewBag.General.Header</h1>
+                <span class="text-muted text-transform address">@ViewBag.General.HeaderAddress</span>
+                <p class="hero-text">@ViewBag.General.HeaderText</p>
+
+                <div class="CTAs d-flex flex-wrap">
+                    <a href="@Url.Action("Index", "About")" class="btn btn-template animsition-link">Discover More</a>
+                    <a href="@Url.Action("Index", "Reservation")" class="btn btn-template-outlined animsition-link">Make Reservation</a>
+                </div>
+            </div>
+
+            <!-- image column -->
+            <div class="image col-lg-6">
+                <img src="~/Public/img/@ViewBag.General.HeaderPicture" alt="dish" class="img-fluid hidden-lg-down">
+            </div>
+        </div>
+    </div>
+</section>
+<!--=============== /. Hero Section ===============-->
+<!--=============== Divider Section ===============-->
+<section class="divider padding-small has-pattern bg-primary">
+    <div class="container text-center">
+        <p>
+            Call Us for Home Delievery
+            <a href="tel:9870988764">@ViewBag.General.OrderPhone</a>
+        </p>
+    </div>
+</section>
+<!--=============== /. Divider Section ===============-->
+<!--=============== About Section ===============-->
+<section class="about">
+    <div class="container text-center">
+        <h2 class="with-bg-text" data-text="About Us">
+            <small class="text-primary">Our Story</small>
+            About Spicy Restaurant
+        </h2>
+
+        <p class="lead col-lg-10 push-lg-1">@ViewBag.General.Story</p>
+        <a href="@Url.Action("Index", "About")" class="btn-template animsition-link">Discover More</a>
+    </div>
+</section>
+<!--=============== /. About Section ===============-->
+<!--=============== Features Section ===============-->
+<section class="features no-padding-top">
+    <div class="container">
+        <div class="row text-center">
+
+            <!-- feature -->
+            @foreach (Feature item in ViewBag.Feature)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="item has-pattern-on-hover has-shadow-on-hover rounded">
+                        <div class="icon">
+                            <img src="~/Public/img/@item.Image" alt="...">
+                        </div>
+                        <h3 class="heading-light">@item.Header</h3>
+                        <p>@item.Text</p>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!--=============== /. Features Section ===============-->
+<!--=============== Dishes Section ===============-->
+<section class="dishes no-padding-top">
+    <div class="container">
+
+        <header class="text-center">
+            <h2 class="with-bg-text" data-text="Features">
+                <small class="text-primary">Hot this month</small>
+                Our Featured Dishes
+            </h2>
+        </header>
+
+        <!-- dishes slider -->
+        <div class="owl-carousel owl-theme dishes-slider">
+
+            <!-- item -->
+            @foreach (Dish item in ViewBag.Dish)
+            {
+                <div class="item text-center has-shadow rounded">
+                    @if (item.DiscountPrice > 0)
+                    {
+                        <div class="ribbon">Sale</div>
+                    }
+
+                    <div class="image">
+                        <img src="~/Public/img/@item.Image" alt="..." class="img-fluid d-block mx-auto">
+                    </div>
+                    <h3 class="heading-light">@item.Name</h3>
+                    <p>@item.Text</p>
+                    <ul class="price list-inline">
+                        @if (item.DiscountPrice == null)
+                        {
+                            <li class="list-inline-item current">$@item.Price</li>
+                        }
+
+                        @if (item.DiscountPrice > 0)
+                        {
+                            <li class="list-inline-item current">$@item.DiscountPrice</li>
+                            <li class="list-inline-item original">$@item.Price</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!--=============== /. Dishes Section ===============-->
+<!--=============== /. Menu Section ===============-->
+<section class="menu bg-gray">
+    <div class="container">
+        <header class="text-center">
+            <h2 class="with-bg-text-gray" data-text="Menu">
+                <small class="text-primary">Full dishes list</small>
+                Our Food Menu
+            </h2>
+        </header>
+
+        <!-- tabs navigation -->
+        <ul class="nav nav-tabs has-pattern d-flex justify-content-center flex-lg-no-wrap flex-wrap" role="tablist">
+            @{
+                int i = 0;
+            }
+            @foreach (MenuCategory item in ViewBag.MenuCategories)
+            {
+                <li class="nav-item">
+                    <a class='nav-link @(i==0?"active":"")' data-toggle="tab" href="#@item.Name.Replace(" ","_").ToLower()" role="tab">@item.Name</a>
+                </li>
+
+                i++;
+            }
+        </ul>
+
+        <div class="tab-content">
+            @{
+                i = 0;
+            }
+            @foreach (MenuCategory item in ViewBag.MenuCategories)
+            {
+                int half = Convert.ToInt32(item.Menus.Count() / 2);
+                var firstHalf = item.Menus.Take(half).ToList();
+                var secondHalf = item.Menus.Skip(half).ToList();
+
+                <div class="tab-pane @(i==0?"active":"")" id="@item.Name.Replace(" ","_").ToLower()" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @foreach (var halfItem in firstHalf)
+                            {
+                                <div class="dish has-pattern-on-hover has-shadow-small-on-hover d-flex align-items-center justify-content-between">
+                                    <div class="image">
+                                        <img src="~/Public/img/@halfItem.Picture" alt="dish" class="img-fluid">
+                                    </div>
+                                    <div class="details">
+                                        <div class="name">@halfItem.Menu1</div>
+                                        <div class="tags">@halfItem.Details</div>
+                                    </div>
+                                    <div class="price">$@halfItem.Price</div>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-lg-6">
+                            @foreach (Menu secondItem in secondHalf)
+                            {
+                                <div class="dish has-pattern-on-hover has-shadow-small-on-hover d-flex align-items-center justify-content-between">
+                                    <div class="image">
+                                        <img src="~/Public/img/@secondItem.Picture" alt="dish" class="img-fluid">
+                                    </div>
+                                    <div class="details">
+                                        <div class="name">@secondItem.Menu1</div>
+                                        <div class="tags">@secondItem.Details</div>
+                                    </div>
+                                    <div class="price">$@secondItem.Price</div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                i++;
+            }
+        </div>
+
+    </div>
+</section>
+<!--=============== Menu Section ===============-->
+<!--=============== Divider Section ===============-->
+<section class="divider has-pattern bg-primary padding-small">
+    <div class="container text-center">
+        <p>Our App is available, download it now</p>
+        <div class="CTAs d-flex flex-wrap justify-content-center">
+            <a href="#" class="google-play">Google Play</a>
+            <a href="#" class="appstore">App Store</a>
+        </div>
+    </div>
+</section>
+<!--=============== /. Divider Section ===============-->
+<!--=============== /. Events Section ===============-->
+<section class="events">
+    <div class="container">
+        <header class="text-center">
+            <h2 class="with-bg-text-gray" data-text="Events">
+                <small class="text-primary">Don't miss it</small>
+                Upcoming Events
+            </h2>
+        </header>
+
+        <!-- events slider -->
+        <div class="owl-carousel owl-theme events-slider">
+
+            @foreach (Event item in ViewBag.Event)
+            {
+                <!-- item -->
+                <div class="item">
+                    <div class="row d-flex align-items-stretch">
+                        <div class="col-lg-5">
+                            <div class="image has-shadow rounded" style="background: url(/Public/img/@item.Image);"></div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="details has-shadow rounded d-flex align-items-center has-pattern">
+                                <div class="content">
+                                    <h3 class="heading-light">@item.Name</h3>
+                                    <small class="date text-uppercase text-primary">@item.Date.Value.ToString("dd MMMM yyyy") | @item.Time</small>
+                                    <p>@item.Details</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!--=============== Events Section ===============-->
+<!--=============== Chefs Section ===============-->
+<section class="chefs bg-gray">
+    <div class="container">
+        <header class="text-center">
+            <h2 class="with-bg-text-gray" data-text="Chefs">
+                <small class="text-primary">Our masters of cooking</small>
+                Our Chefs
+            </h2>
+        </header>
+
+        <!-- chefs slider -->
+        <div class="owl-carousel owl-theme chefs-slider text-center">
+            @foreach (Chef item in ViewBag.Chef)
+            {
+                <!-- item -->
+                <div class="item rounded has-pattern-on-hover has-shadow-on-hover">
+                    <div class="image d-flex align-items-end">
+                        <img src="~/Public/img/@item.Image" alt="..." class="img-fluid d-block mx-auto">
+                    </div>
+                    <div class="details has-pattern-on-hover">
+                        <h3>@item.Fullname</h3>
+                        <span>@item.Position</span>
+                        <ul class="social-icons list-inline">
+                            <li class="list-inline-item">
+                                <a href="@item.Facebook" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="@item.Twitter" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="@item.Instagram" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="@item.LinedIn" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!--=============== /. Chefs Section ===============-->
+<!--=============== Reservation Section ===============-->
+<section class="reservation">
+    <div class="container">
+        <header class="text-center">
+            <h2 class="with-bg-text" data-text="Reservation">
+                <small class="text-primary">Reserve a seat</small>
+                Order Your Table
+            </h2>
+        </header>
+
+        <div class="form-holder row">
+            @if (Session["mailSended"] != null)
+                {
+                    <div class="alert alert-success">
+                        Your message sended
+                    </div>
+
+                    Session["mailSended"] = null;
+                }
+            <form action='@Url.Action("Message","Reservation")' id='reservation-form' class='col-lg-10 push-lg-1 rounded has-shadow has-pattern' method='post'>
+                <input type='hidden' name='form-name' value='reservation-form' />
+                <div class="star"><i class="fa fa-star"></i></div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="text" name="Name" class="input-material" id="name" required>
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="Email" name="email" class="input-material" id="email" required>
+                        <label for="email">Email Address</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="tel" name="Phone" class="input-material" id="phone" required>
+                        <label for="phone">Phone Number</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" name="PeopleNumber" class="input-material" id="people-number" required>
+                        <label for="people-number">How Many People</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" name="Time" class="input-material timepicker" id="time-alt" required>
+                        <label for="time-alt">Desired Time</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="input-material datepicker-here" id="date" name="Date" data-language='en' required>
+                        <label for="date">Desired Date</label>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <textarea class="input-material" id="special-request" name="SpecialRequest" required></textarea>
+                        <label for="special-request">Special Request</label>
+                    </div>
+                    <div class="form-group col-md-12 text-center no-margin">
+                        <button type="submit" class="btn-template btn-sm">Book Now</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!--=============== /. Reservation Section ===============-->
+<!--=============== Testimonials Section ===============-->
+<section class="testimonials bg-gray">
+    <div class="container text-center">
+        <header class="text-center">
+            <h2 class="with-bg-text-gray" data-text="Testimonials">
+                <small class="text-primary">Our Clients' Feedbacks</small>
+                What Our Clients Say
+            </h2>
+        </header>
+
+        <!-- Testimonials Slider -->
+        <div class="owl-carousel owl-theme testimonials-slider text-center">
+            <!-- item -->
+            @foreach (Comment item in ViewBag.Comment)
+            {
+                <div class="item col-lg-10 push-lg-1 rounded has-pattern has-shadow">
+                    <div class="quote"><img src="~/Public/img/@ViewBag.General.Quote" alt="..."></div>
+                    <div class="user">
+                        <div class="profile">
+                            <img class="rounded-circle" src="~/Public/img/@item.Image" alt="...">
+                        </div>
+                        <ul class="rate list-inline">
+                            <li class="list-inline-item active"><i class="fa fa-star"></i></li>
+                            <li class="list-inline-item active"><i class="fa fa-star"></i></li>
+                            <li class="list-inline-item active"><i class="fa fa-star"></i></li>
+                            <li class="list-inline-item active"><i class="fa fa-star"></i></li>
+                            <li class="list-inline-item active"><i class="fa fa-star"></i></li>
+                        </ul>
+                        <h4>@item.Name</h4>
+                    </div>
+                    <p class="lead">@item.Text</p>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+<!--=============== /. Testimonials Section ===============-->
+<!--=============== Newsletter Section ===============-->
+<section class="newsletter">
+    <div class="container">
+        <header class="text-center">
+            <h2>Newsletter</h2>
+            <p class="lead col-lg-10 push-lg-1">@ViewBag.General.Newsletter</p>
+        </header>
+
+        <div class="form-holder row">
+            <form action='@Url.Action("Subscribe","Home")' id='newsletter-form' class='col-lg-10 push-lg-1' method='post'>
+                <div class="form-group no-margin">
+                    <input type="email" name=Email value='' class="form-control" placeholder="Enter your email address">
+                    <button type="submit">Subscribe</button>
+                    <div class="alert alert-warning alert-dismissible fade hide" id="subscribe_msj">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <span class="text"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!--=============== /. Newsletter Section ===============-->

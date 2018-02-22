@@ -1,0 +1,96 @@
+﻿@using RestaurantReserv.Models;
+
+<!--=============== Hero Section ===============-->
+<section class="hero hero-page bg-gray has-pattern">
+    <div class="container text-center">
+        <!-- Breadcrumb -->
+        <ul class="breadcrumb d-flex justify-content-center">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")" class="animsition-link">Home</a></li>
+            <li class="breadcrumb-item active">Menu</li>
+        </ul>
+
+        <h1>Menu</h1>
+        <p class="hero-text col-lg-8 push-lg-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <a href="@Url.Action("Index","Reservation")" class="btn-template has-shadow animsition-link">Make a Reservation</a>
+    </div>
+</section>
+<!--=============== /. Hero Section ===============-->
+<!--=============== Separator Section ===============-->
+<section class="menu-separator parallax" style="background: url(/Public/img/menu-bg-1.jpg);"></section>
+<!--=============== /. Separator Section ===============-->
+<section class="menu bg-gray">
+    <div class="container">
+        <header class="text-center">
+            <h2 class="with-bg-text-gray" data-text="Menu">
+                <small class="text-primary">Full dishes list</small>
+                Our Food Menu
+            </h2>
+        </header>
+
+        <!-- tabs navigation -->
+        <ul class="nav nav-tabs has-pattern d-flex justify-content-center flex-lg-no-wrap flex-wrap" role="tablist">
+            @{
+                int i = 0;
+            }
+            @foreach (MenuCategory item in ViewBag.MenuCategories)
+            {
+                <li class="nav-item">
+                    <a class='nav-link @(i==0?"active":"")' data-toggle="tab" href="#@item.Name.Replace(" ","_").ToLower()" role="tab">@item.Name</a>
+                </li>
+
+                i++;
+            }
+        </ul>
+
+        <div class="tab-content">
+            @{
+                i = 0;
+            }
+            @foreach (MenuCategory item in ViewBag.MenuCategories)
+            {
+                int half = Convert.ToInt32(item.Menus.Count() / 2);
+                var firstHalf = item.Menus.Take(half).ToList();
+                var secondHalf = item.Menus.Skip(half).ToList();
+
+                <div class="tab-pane @(i==0?"active":"")" id="@item.Name.Replace(" ","_").ToLower()" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @foreach (var halfItem in firstHalf)
+                            {
+                                <div class="dish has-pattern-on-hover has-shadow-small-on-hover d-flex align-items-center justify-content-between">
+                                    <div class="image">
+                                        <img src="~/Public/img/@halfItem.Picture" alt="dish" class="img-fluid">
+                                    </div>
+                                    <div class="details">
+                                        <div class="name">@halfItem.Menu1</div>
+                                        <div class="tags">@halfItem.Details</div>
+                                    </div>
+                                    <div class="price">$@halfItem.Price</div>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-lg-6">
+                            @foreach (Menu secondItem in secondHalf)
+                            {
+                                <div class="dish has-pattern-on-hover has-shadow-small-on-hover d-flex align-items-center justify-content-between">
+                                    <div class="image">
+                                        <img src="~/Public/img/@secondItem.Picture" alt="dish" class="img-fluid">
+                                    </div>
+                                    <div class="details">
+                                        <div class="name">@secondItem.Menu1</div>
+                                        <div class="tags">@secondItem.Details</div>
+                                    </div>
+                                    <div class="price">$@secondItem.Price</div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                i++;
+            }
+        </div>
+
+    </div>
+</section>
+<!--=============== Menu Section ===============-->

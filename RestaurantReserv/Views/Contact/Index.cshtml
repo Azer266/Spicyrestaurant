@@ -1,0 +1,122 @@
+﻿@using RestaurantReserv.Models;
+
+<!--=============== Hero Section ===============-->
+<section class="hero hero-page bg-gray has-pattern">
+    <div class="container text-center">
+        <!-- Breadcrumb -->
+        <ul class="breadcrumb d-flex justify-content-center">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")" class="animsition-link">Home</a></li>
+            <li class="breadcrumb-item active">Contact</li>
+        </ul>
+        <h1>Contact</h1>
+        <p class="hero-text col-lg-8 push-lg-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+</section>
+<!--=============== /. Hero Section ===============-->
+<!--=============== Contact Section ===============-->
+<section class="contact">
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <!-- map -->
+            <div class="col-lg-8">
+                <div class="map-holder">
+                    <div id="map"></div>
+                </div>
+            </div>
+
+            <!-- details -->
+            <div class="col-lg-4">
+                <div class="contact-details has-pattern">
+                    <h2>Main Branch</h2>
+                    <strong>@ViewBag.Contact.MainBranch</strong>
+                    <p class="address">@ViewBag.Contact.MainAddress</p>
+                    <p class="address">@ViewBag.Contact.MainAddress2</p>
+                    <p class="latlang">@ViewBag.Contact.MainCordination</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--=============== /. Contact Section ===============-->
+<!--=============== Branches Section ===============-->
+<section class="branches bg-gray">
+    <div class="container">
+        <header class="text-center">
+            <h2 class="with-bg-text" data-text="Branches">
+                <small class="text-primary">Where to find us</small>
+                Our Branches
+            </h2>
+        </header>
+
+        <div class="row">
+            @foreach (Branch item in ViewBag.Branch)
+            {
+                <!-- branch -->
+                <div class="branch col-lg-3 col-md-6">
+                    <strong>@item.Name</strong>
+                    <p class="address">@item.Address</p>
+                    <p class="address">@item.Address2</p>
+                    <div class="line"></div>
+                    <p class="coordination">@item.Cordination</p>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!--=============== /. Branches Section ===============-->
+<!--=============== Contact Section ===============-->
+<section class="contact">
+    <div class="container">
+        <header class="text-center">
+            <h2 class="with-bg-text" data-text="Form">
+                <small class="text-primary">Contact</small>
+                Write to Us
+            </h2>
+            <p class="lead col-lg-8 push-lg-2">Vulputate mi dui suscipit, molestie vulputate libero fusce iaculis suscipit. Sapien pede libero. Maecenas lacus aliquet.</p>
+        </header>
+
+        <div class="row">
+            <div class="form-holder has-pattern has-shadow rounded col-lg-10 push-lg-1">
+                @if (Session["mailSended"] != null)
+                {
+                    <div class="alert alert-success">
+                        Your message sended
+                    </div>
+
+                    Session["mailSended"] = null;
+                }
+                <div class="star"><i class="fa fa-paper-plane"></i></div>
+                <form action="@Url.Action("Message","Contact")" id='contact-form' method='post'>
+                    <input type='hidden' name='form-name' value='contact-form' />
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <input type="text" class="input-material" id="name" name="Name" required>
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <input type="email" class="input-material" id="email" name="Email" required>
+                            <label for="email">Your Email Address</label>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <input type="tel" class="input-material" id="phone" name="Phone" required>
+                            <label for="phone">Phone Number - <small>Optional</small></label>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <input type="text" class="input-material" id="subject" name="Subject" required>
+                            <label for="subject">Subject</label>
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <textarea name="Message" id="message" class="input-material" required></textarea>
+                            <label for="message">How can we help you...</label>
+                        </div>
+                        <div class="form-group col-lg-12 text-center">
+                            <button type="submit" class="btn-template btn-sm">Send Your Message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=============== /. Contact Section ===============-->
